@@ -1,0 +1,74 @@
+nuget {
+	// the nuspec file metadata. Gets created/updated on build
+	nuspec {
+		id = libogg;
+		version : 1.3.0.0;
+		title: Ogg Multimedia Library;
+		authors: {Xiph contributors, Garrett Serack};
+		owners: {CoApp Project, Garrett Serack};
+		licenseUrl: "http://opensource.org/licenses/BSD-2-Clause";
+		projectUrl: "http://www.xiph.org/ogg/";
+		iconUrl: "http://www.xiph.org/images/logos/fish_xiph_org.png";
+		requireLicenseAcceptance:false;
+		summary: Library for manipulating Ogg container files;
+		description: @"Ogg is a multimedia container format, and the native file and stream format for the Xiph.org multimedia codecs. As with all Xiph.org technology is it an open format free for anyone to use.
+
+As with most container formats it encapsulates raw compressed data and allows the interleaving of audio and video data inside a single convient format. Other examples of container formats are Quicktime .mov, the MPEG program stream, and AVI.
+
+In addition to encapsulation and interleave of multiple data streams, Ogg provides packet framing, error detection, and periodic timestamps for seeking, and in a small, bounded percentage bitrate overhead.
+
+Ogg is a stream oriented container, meaning it can be written and read in one pass, making it a natural fit for internet streaming and use in processing pipelines. This stream orientation is the major design difference over other file-based container formats.";
+		releaseNotes: "...";
+		copyright: Copyright 2013;
+		tags: { ogg, libogg, native, CoApp };
+
+	};
+
+	// the files that go into the content folders
+	// (inserted into the nuspec file)
+	files {
+		nestedInclude: {
+            #destination = ..\${d_include}\ogg;
+			
+			..\include\ogg\*.h
+        };
+	
+
+        source:  { 
+            ..\**\*.c,
+            ..\**\*.h,
+        };
+
+		docs: { 
+            ..\doc\**\*
+        };
+        
+        ("v100,v110", "Win32,x64", "release,debug", "dynamic,static") => {
+            [${0},${1},${2},${3}] {
+				lib:     { ..\win32\output\${0}\${1}\${2}\${3}Library\*.lib };
+            };
+		};
+
+        ("v100,v110", "Win32,x64", "release,debug", "dynamic") => {
+            [${0},${1},${2},${3}] {
+				bin:     { ..\win32\output\${0}\${1}\${2}\${3}Library\*.dll };
+				symbols: { ..\win32\output\${0}\${1}\${2}\${3}Library\*.pdb };
+            };
+		};
+
+
+	};
+
+	// the VC++ .props file that gets generated and inserted into the ${d_content} folder
+	props { 
+		// we're going to generate a number of properties anyway. 
+        // so even if the packager doesn't specify the props object 
+        // we're going to make this file.
+	};
+
+	// the VC++ .targets file that gets generated and inserted into the ${d_content} folder
+	targets {
+		// every configuration needs to reference the include directories.
+		Defines += HAS_LIBOGG;
+	};
+}
