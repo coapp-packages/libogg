@@ -46,11 +46,13 @@
     </ClCompile>
   </ItemDefinitionGroup>
    <Target Name="Info" BeforeTargets="Build">
-    <Message Text="  Configuration     :  '$(Configuration)'" />
-    <Message Text="  PlatformToolset   :  '$(PlatformToolset)'" />
-    <Message Text="  Platform          :  '$(Platform)'" />
-    <Message Text="  ConfigurationType :  '$(ConfigurationType)'" />
-    <Message Text="  CallingConvention :  '$(CallingConvention)'" />
+    <Message Text="*******************************************************************************" Importance="high" />
+    <Message Text="*  Configuration     :  '$(Configuration)'" Importance="high" />
+    <Message Text="*  PlatformToolset   :  '$(PlatformToolset)'" Importance="high" />
+    <Message Text="*  Platform          :  '$(Platform)'" Importance="high" />
+    <Message Text="*  ConfigurationType :  '$(ConfigurationType)'" Importance="high" />
+    <Message Text="*  CallingConvention :  '$(CallingConvention)'" Importance="high" />
+    <Message Text="*******************************************************************************" Importance="high" />
 	<MakeDir Directories="$(OutDir);$(IntDir);$(TargetDir)"/>
   </Target>
 </Project>

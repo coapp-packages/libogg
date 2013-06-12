@@ -2,7 +2,7 @@ nuget {
 	// the nuspec file metadata. Gets created/updated on build
 	nuspec {
 		id = libogg;
-		version : 1.3.0.0;
+		version : 1.3.0.1;
 		title: Ogg Multimedia Library;
 		authors: {Xiph contributors, Garrett Serack};
 		owners: {CoApp Project, Garrett Serack};
